@@ -7,6 +7,12 @@ import com.haid.timeline.domain.Book;
 
 public class StubBooksDAO implements BooksDAO {
 
+    private List<Book> allBooks;
+
+    public StubBooksDAO(List<Book> books) {
+        allBooks = books;
+    }
+
     @Override
     public List<Book> getAllBooks() {
         // TODO Auto-generated method stub

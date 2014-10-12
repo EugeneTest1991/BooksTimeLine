@@ -12,6 +12,15 @@ public final class Book implements Serializable {
     private Date actionStart;
     private Date actionEnd;
 
+    public Book(Long id, String author, String title, Date actionStart, Date actionEnd) {
+        super();
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.actionStart = actionStart;
+        this.actionEnd = actionEnd;
+    }
+
     public Long getId() {
         return id;
     }
