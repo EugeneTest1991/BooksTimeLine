@@ -11,6 +11,11 @@ public final class Book implements Serializable {
     private String title;
     private Date actionStart;
     private Date actionEnd;
+    
+    // TODO maybe delete
+    public Book() {
+        
+    }
 
     public Book(Long id, String author, String title, Date actionStart, Date actionEnd) {
         super();
@@ -59,6 +64,68 @@ public final class Book implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((actionEnd == null) ? 0 : actionEnd.hashCode());
+        result = prime * result + ((actionStart == null) ? 0 : actionStart.hashCode());
+        result = prime * result + ((author == null) ? 0 : author.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Book other = (Book) obj;
+        if (actionEnd == null) {
+            if (other.actionEnd != null) {
+                return false;
+            }
+        } else if (!actionEnd.equals(other.actionEnd)) {
+            return false;
+        }
+        if (actionStart == null) {
+            if (other.actionStart != null) {
+                return false;
+            }
+        } else if (!actionStart.equals(other.actionStart)) {
+            return false;
+        }
+        if (author == null) {
+            if (other.author != null) {
+                return false;
+            }
+        } else if (!author.equals(other.author)) {
+            return false;
+        }
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (title == null) {
+            if (other.title != null) {
+                return false;
+            }
+        } else if (!title.equals(other.title)) {
+            return false;
+        }
+        return true;
     }
 
 }
