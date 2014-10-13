@@ -1,6 +1,6 @@
 package com.haid.timeline.repository;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,23 +13,35 @@ import com.haid.timeline.domain.Book;
 
 public class StubBooksDAOTests {
 
+    private StubBooksDAO booksDAO;
+
+    private Book toKilltheBird;
+    private Book uncleTom;
+
+    List<Book> allBooks;
+
     @Before
     public void setUp() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
-        Book toKilltheBird =
+        toKilltheBird =
                 new Book(1L, "‎Harper Lee", "To Kill a Mockingbird", sdf.parse("01/1/1935"),
                         sdf.parse("01/1/1936"));
-        Book uncleTom =
+        uncleTom =
                 new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin", sdf.parse("01/1/1850"),
                         sdf.parse("01/1/1852"));
-        List<Book> books = new ArrayList<Book>();
-        books.add(uncleTom);
-        books.add(toKilltheBird);
+        allBooks = new ArrayList<Book>();
+        allBooks.add(uncleTom);
+        allBooks.add(toKilltheBird);
+
+        booksDAO = new StubBooksDAO(allBooks);
     }
 
     @Test
     public void testGetAllBooks() {
-        fail("Not yet implemented");
+        List<Book> returnedBooks = booksDAO.getAllBooks();
+        assertEquals("wrong size", allBooks.size(), returnedBooks.size());
+        assertTrue("not contain MockinBird", returnedBooks.contains(toKilltheBird));
+        assertTrue("not contain UncleTom", returnedBooks.contains(uncleTom));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.haid.timeline.repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +16,11 @@ public class StubBooksDAO implements BooksDAO {
 
     @Override
     public List<Book> getAllBooks() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<Book> books = new ArrayList<Book>(2);
+        books.add(new Book());
+        books.add(new Book());
+        
+        return books;
     }
 
     @Override
