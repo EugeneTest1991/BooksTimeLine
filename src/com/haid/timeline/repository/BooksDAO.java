@@ -9,7 +9,7 @@ import com.haid.timeline.domain.Book;
 public interface BooksDAO {
     List<Book> getAllBooks();
 
-    List<Book> getBooksFromPeriod(Date dateFrom, Date dateto);
+    List<Book> getBooksFromPeriod(Date dateFrom, Date dateTo);
 
     Book getBookById(Long id);
 }
