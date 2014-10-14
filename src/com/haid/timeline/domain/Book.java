@@ -11,10 +11,10 @@ public final class Book implements Serializable {
     private String title;
     private Date actionStart;
     private Date actionEnd;
-    
+
     // TODO maybe delete
     public Book() {
-        
+
     }
 
     public Book(Long id, String author, String title, Date actionStart, Date actionEnd) {
@@ -126,6 +126,17 @@ public final class Book implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Book [id=");
+        builder.append(id);
+        builder.append(", title=");
+        builder.append(title);
+        builder.append("]");
+        return builder.toString();
     }
 
 }
