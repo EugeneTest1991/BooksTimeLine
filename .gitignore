@@ -52,3 +52,4 @@ hs_err_pid*
 *.log
 *.lck
 /build/
+/target/
