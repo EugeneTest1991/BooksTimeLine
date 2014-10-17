@@ -46,7 +46,6 @@ public class BooksServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        // TODO Auto-generated method stub
         super.init();
         bookManager = InitiationService.initBookManager();
     }
