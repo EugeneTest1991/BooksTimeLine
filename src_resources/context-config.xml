@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+>
+
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="dd/M/yyyy" />
+    </bean>
+
+ <!-- mockingbird =
+                new Book(1L, "‎Harper Lee", "To Kill a Mockingbird", sdf.parse("01/1/1935"),
+                        sdf.parse("01/1/1936")); -->
+    <bean id="mockingbird" class="com.haid.timeline.domain.Book">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg index="1" value="Harper Lee"/>
+        <constructor-arg index="2" value="To Kill a Mockingbird"/>
+        <constructor-arg index="3">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="01/1/1935" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="4">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="01/1/1936" />
+            </bean>
+        </constructor-arg>
+    </bean>
+
+</beans>
