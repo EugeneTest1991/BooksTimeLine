@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.haid.timeline.domain.Book;
 import com.haid.timeline.service.BookManager;
-import com.haid.timeline.service.InitiationService;
 
 public class BooksServlet extends HttpServlet {
 
@@ -46,8 +47,9 @@ public class BooksServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        super.init();
-        bookManager = InitiationService.initBookManager();
+        ClassPathXmlApplicationContext context =
+                new ClassPathXmlApplicationContext("context-config.xml");
+        bookManager = (BookManager) context.getBean("bookManager");
     }
 
 
