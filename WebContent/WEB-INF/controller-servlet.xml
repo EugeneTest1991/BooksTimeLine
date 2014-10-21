@@ -1,0 +1,70 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:component-scan base-package="com.haid.timeline.web" />
+
+    <bean id="bookManager" class="com.haid.timeline.service.SimpleBookManager">
+        <constructor-arg ref="stubDAO" />
+    </bean>
+
+    <bean id="hibernateDAO" class="com.haid.timeline.repository.HibernateDAO"
+        lazy-init="true" />
+
+    <bean id="stubDAO" class="com.haid.timeline.repository.StubBooksDAO">
+        <constructor-arg>
+            <list>
+                <ref bean="mockingbird" />
+                <ref bean="uncletom" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="mockingbird" class="com.haid.timeline.domain.Book">
+        <constructor-arg index="0" value="1" />
+        <constructor-arg index="1" value="Harper Lee" />
+        <constructor-arg index="2" value="To Kill a Mockingbird" />
+        <constructor-arg index="3">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="01/1/1935" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="4">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="01/1/1936" />
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="uncletom" class="com.haid.timeline.domain.Book">
+        <constructor-arg index="0" value="2" />
+        <constructor-arg index="1" value="Harriet Beecher Stowe" />
+        <constructor-arg index="2" value="Uncle Tom's Cabi" />
+        <constructor-arg index="3">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="01/1/1850" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg index="4">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="01/1/1852" />
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="dd/M/yyyy" />
+    </bean>
+
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+</beans>
