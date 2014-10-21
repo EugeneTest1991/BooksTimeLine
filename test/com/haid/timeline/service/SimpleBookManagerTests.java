@@ -27,11 +27,11 @@ public class SimpleBookManagerTests {
     public void setUp() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
         toKilltheBird =
-                new Book(1L, "‎Harper Lee", "To Kill a Mockingbird", sdf.parse("01/1/1935"),
-                        sdf.parse("01/1/1936"));
+                new Book(1L, "‎Harper Lee", "To Kill a Mockingbird",
+                        sdf.parse("01/1/1935"), sdf.parse("01/1/1936"));
         uncleToms =
-                new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin", sdf.parse("01/1/1850"),
-                        sdf.parse("01/1/1852"));
+                new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
+                        sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));
 
         allBooks = new ArrayList<Book>();
         allBooks.add(uncleToms);
@@ -52,7 +52,8 @@ public class SimpleBookManagerTests {
     public void testGetAllBooks() {
         List<Book> returnedBooks = manager.getAllBooks();
         assertEquals("wrong size", allBooks.size(), returnedBooks.size());
-        assertTrue("not contain MockinBird", returnedBooks.contains(toKilltheBird));
+        assertTrue("not contain MockinBird",
+                returnedBooks.contains(toKilltheBird));
         assertTrue("not contain UncleTom", returnedBooks.contains(uncleToms));
     }
 
@@ -63,9 +64,11 @@ public class SimpleBookManagerTests {
         List<Book> returnedBooks;
         try {
             returnedBooks =
-                    manager.getBooksFromPeriod(sdf.parse("01/1/1900"), sdf.parse("01/1/1950"));
+                    manager.getBooksFromPeriod(sdf.parse("01/1/1900"),
+                            sdf.parse("01/1/1950"));
             assertEquals("wrong size", 1, returnedBooks.size());
-            assertTrue("not contain MockinBird", returnedBooks.contains(toKilltheBird));
+            assertTrue("not contain MockinBird",
+                    returnedBooks.contains(toKilltheBird));
         } catch (ParseException e) {
             e.printStackTrace();
             fail();

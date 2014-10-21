@@ -16,7 +16,8 @@ public class HibernateDAO implements BooksDAO {
     static {
         Configuration configuration = new Configuration().configure();
         StandardServiceRegistryBuilder builder =
-                new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+                new StandardServiceRegistryBuilder()
+                        .applySettings(configuration.getProperties());
         sessionFactory = configuration.buildSessionFactory(builder.build());
     }
 

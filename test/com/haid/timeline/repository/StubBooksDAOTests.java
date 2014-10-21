@@ -25,11 +25,11 @@ public class StubBooksDAOTests {
     public void setUp() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
         toKilltheBird =
-                new Book(1L, "‎Harper Lee", "To Kill a Mockingbird", sdf.parse("01/1/1935"),
-                        sdf.parse("01/1/1936"));
+                new Book(1L, "‎Harper Lee", "To Kill a Mockingbird",
+                        sdf.parse("01/1/1935"), sdf.parse("01/1/1936"));
         uncleToms =
-                new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin", sdf.parse("01/1/1850"),
-                        sdf.parse("01/1/1852"));
+                new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
+                        sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));
 
         allBooks = new ArrayList<Book>();
         allBooks.add(uncleToms);
@@ -42,7 +42,8 @@ public class StubBooksDAOTests {
     public void testGetAllBooks() {
         List<Book> returnedBooks = booksDAO.getAllBooks();
         assertEquals("wrong size", allBooks.size(), returnedBooks.size());
-        assertTrue("not contain MockinBird", returnedBooks.contains(toKilltheBird));
+        assertTrue("not contain MockinBird",
+                returnedBooks.contains(toKilltheBird));
         assertTrue("not contain UncleTom", returnedBooks.contains(uncleToms));
     }
 
@@ -69,28 +70,38 @@ public class StubBooksDAOTests {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
             List<Book> returnedBooks =
-                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1850"), sdf.parse("01/1/1900"));
+                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1850"),
+                            sdf.parse("01/1/1900"));
             assertEquals("wrong size", 1, returnedBooks.size());
-            assertTrue("not contain UncleTom", returnedBooks.contains(uncleToms));
+            assertTrue("not contain UncleTom",
+                    returnedBooks.contains(uncleToms));
 
             returnedBooks =
-                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1750"), sdf.parse("01/1/1852"));
+                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1750"),
+                            sdf.parse("01/1/1852"));
             assertEquals("wrong size", 1, returnedBooks.size());
-            assertTrue("not contain UncleTom", returnedBooks.contains(uncleToms));
+            assertTrue("not contain UncleTom",
+                    returnedBooks.contains(uncleToms));
 
             returnedBooks =
-                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1900"), sdf.parse("01/1/1950"));
+                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1900"),
+                            sdf.parse("01/1/1950"));
             assertEquals("wrong size", 1, returnedBooks.size());
-            assertTrue("not contain MockinBird", returnedBooks.contains(toKilltheBird));
+            assertTrue("not contain MockinBird",
+                    returnedBooks.contains(toKilltheBird));
 
             returnedBooks =
-                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1800"), sdf.parse("01/1/1950"));
+                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1800"),
+                            sdf.parse("01/1/1950"));
             assertEquals("wrong size", 2, returnedBooks.size());
-            assertTrue("not contain UncleTom", returnedBooks.contains(uncleToms));
-            assertTrue("not contain MockinBird", returnedBooks.contains(toKilltheBird));
+            assertTrue("not contain UncleTom",
+                    returnedBooks.contains(uncleToms));
+            assertTrue("not contain MockinBird",
+                    returnedBooks.contains(toKilltheBird));
 
             returnedBooks =
-                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1900"), sdf.parse("01/1/1900"));
+                    booksDAO.getBooksFromPeriod(sdf.parse("01/1/1900"),
+                            sdf.parse("01/1/1900"));
             assertEquals("wrong size", 0, returnedBooks.size());
         } catch (ParseException e) {
             e.printStackTrace();

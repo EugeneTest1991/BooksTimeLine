@@ -15,7 +15,8 @@ public class InitiationServiceTests {
         BookManager bookManager = InitiationService.initBookManager();
         assertNotNull("not init BookManager", bookManager);
         assertNotNull("not init books collection", bookManager.getAllBooks());
-        assertNotEquals("empty books collection", 0L, bookManager.getAllBooks().size());
+        assertNotEquals("empty books collection", 0L, bookManager.getAllBooks()
+                .size());
     }
 
 }

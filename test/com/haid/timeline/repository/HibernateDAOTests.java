@@ -29,8 +29,8 @@ public class HibernateDAOTests {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
 
         try {
-            System.err.println(new HibernateDAO().getBooksFromPeriod(sdf.parse("01/1/1800"),
-                    sdf.parse("01/1/1901")));
+            System.err.println(new HibernateDAO().getBooksFromPeriod(
+                    sdf.parse("01/1/1800"), sdf.parse("01/1/1901")));
         } catch (ParseException e) {
             e.printStackTrace();
             org.junit.Assert.fail();

@@ -15,8 +15,8 @@ public class InitiationService {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
             Book toKilltheBird =
-                    new Book(1L, "‎Harper Lee", "To Kill a Mockingbird", sdf.parse("01/1/1935"),
-                            sdf.parse("01/1/1936"));
+                    new Book(1L, "‎Harper Lee", "To Kill a Mockingbird",
+                            sdf.parse("01/1/1935"), sdf.parse("01/1/1936"));
             Book uncleToms =
                     new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
                             sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));

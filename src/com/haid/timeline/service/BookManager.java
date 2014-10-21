@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.haid.timeline.domain.Book;
 
-
-
 public interface BookManager {
 
     public abstract Book getBookInfo(Long bookId);

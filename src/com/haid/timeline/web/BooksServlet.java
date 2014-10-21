@@ -23,13 +23,13 @@ public class BooksServlet extends HttpServlet {
     private BookManager bookManager;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException,
-            IOException {
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
 
         List<Book> books = bookManager.getAllBooks();
         request.setAttribute("books", books);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/books.jsp");
+        RequestDispatcher dispatcher =
+                getServletContext().getRequestDispatcher("/jsp/books.jsp");
         dispatcher.forward(request, response);
         // response.sendRedirect("/jsp/books.jsp");
 
