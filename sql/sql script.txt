@@ -1,0 +1,9 @@
+CREATE SCHEMA `bookstimeline` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE `bookstimeline`.`book` (
+`id` BIGINT NOT NULL AUTO_INCREMENT,
+`author` VARCHAR(100) NOT NULL,
+`title` VARCHAR(100) NOT NULL,
+`actionStart` DATE NOT NULL,
+`actionEnd` DATE NOT NULL,
+PRIMARY KEY (`id`));
