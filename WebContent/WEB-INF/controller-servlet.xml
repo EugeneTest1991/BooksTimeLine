@@ -10,6 +10,16 @@
 
     <context:component-scan base-package="com.haid.timeline.web" />
     <mvc:annotation-driven />
+    
+     <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
 
     <bean id="bookManager" class="com.haid.timeline.service.SimpleBookManager">
         <constructor-arg ref="stubDAO" />
@@ -62,13 +72,4 @@
         <constructor-arg value="dd/M/yyyy" />
     </bean>
 
-    <bean
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/pages/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
 </beans>
