@@ -31,9 +31,6 @@ body, html {
 <body>
     <h1>Books:</h1>
     <p>${books}</p>
-    <p>This example demonstrates the item type "background", see
-        "Period A" and "Period B". The background areas can be styled
-        with css.</p>
     <div id="visualization"></div>
     <div id="loading">loading...</div>
     <script>
@@ -51,7 +48,7 @@ body, html {
                                             end : 'Date'
                                         }
                                     });
-                                    
+
                                     // add items to the DataSet
                                     items.add([ {
                                         id : 'A',
@@ -99,62 +96,6 @@ body, html {
                                     }
                                 }
                             });
-
-/*                     var books = [ {
-                        "id" : 1,
-                        "author" : "Harper Lee",
-                        "title" : "To Kill a Mockingbird",
-                        "actionStart" : -1104526800000,
-                        "actionEnd" : -1072990800000
-                    }, {
-                        "id" : 22,
-                        "author" : "Harriet Beecher Stowe",
-                        "title" : "Uncle Tom's Cabin",
-                        "actionStart" : -3786814800000,
-                        "actionEnd" : -3723742800000
-                    } ];
-
-                    var items = new vis.DataSet({
-                        type : {
-                            start : 'Date',
-                            end : 'Date'
-                        }
-                    });
-
-                    // add items to the DataSet
-                    items.add([ {
-                        id : 'A',
-                        content : 'Great Depression',
-                        start : new Date(-1267833600000),
-                        end : new Date(-978307200000),
-                        type : 'background',
-                        className : 'negative'
-                    }, {
-                        id : 'B',
-                        content : 'slavery',
-                        start : new Date(-11076480000000),
-                        end : new Date(-3283113600000),
-                        type : 'background',
-                        className : 'negative'
-                    } ]);
-
-                    for (var i = 0; i < books.length; i++) {
-                        items.add({
-                            id : books[i].id,
-                            content : books[i].title,
-                            start : new Date(books[i].actionStart),
-                            end : new Date(books[i].actionEnd)
-                        });
-                    }
-
-                    var container = document.getElementById('visualization');
-                    var options = {
-                        start : new Date(-3943814400000),
-                        end : new Date(-943315200000),
-                        editable : false
-                    };
-
-                    var timeline = new vis.Timeline(container, items, options); */
                 </script>
 </body>
 </html>
