@@ -16,18 +16,22 @@ public class SimpleBookManager implements BookManager {
     }
 
     @Override
-    public Book getBookInfo(Long bookId) {
-        return booksDAO.getBookById(bookId);
+    public BookDTO getBookInfo(Long bookId) {
+        Book desiredBook = booksDAO.getBookById(bookId);
+        return BookTransformer.generateDTO(desiredBook);
     }
 
     @Override
-    public List<Book> getAllBooks() {
-        return booksDAO.getAllBooks();
+    public List<BookDTO> getAllBooks() {
+        List<Book> allBooks = booksDAO.getAllBooks();
+        return BookTransformer.generateDTOList(allBooks);
     }
 
     @Override
-    public List<Book> getBooksFromPeriod(Date dateFrom, Date dateTo) {
-        return booksDAO.getBooksFromPeriod(dateFrom, dateTo);
+    public List<BookDTO> getBooksFromPeriod(Date dateFrom, Date dateTo) {
+        List<Book> booksFromPeriod =
+                booksDAO.getBooksFromPeriod(dateFrom, dateTo);
+        return BookTransformer.generateDTOList(booksFromPeriod);
     }
 
 }

@@ -16,59 +16,67 @@ import com.haid.timeline.repository.StubBooksDAO;
 public class SimpleBookManagerTests {
 
     private SimpleBookManager manager;
-    private StubBooksDAO booksDAO;
-
-    private Book toKilltheBird;
-    private Book uncleToms;
-
+    private Book toKilltheBirdBook;
+    private Book uncleTomsBook;
     List<Book> allBooks;
+
+    private BookDTO toKilltheBirdDTO;
+    private BookDTO uncleTomsDTO;
 
     @Before
     public void setUp() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
-        toKilltheBird =
+        toKilltheBirdBook =
                 new Book(1L, "‎Harper Lee", "To Kill a Mockingbird",
                         sdf.parse("01/1/1935"), sdf.parse("01/1/1936"));
-        uncleToms =
+        uncleTomsBook =
                 new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
                         sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));
 
         allBooks = new ArrayList<Book>();
-        allBooks.add(uncleToms);
-        allBooks.add(toKilltheBird);
+        allBooks.add(uncleTomsBook);
+        allBooks.add(toKilltheBirdBook);
 
-        booksDAO = new StubBooksDAO(allBooks);
-        manager = new SimpleBookManager(booksDAO);
+        manager = new SimpleBookManager(new StubBooksDAO(allBooks));
+
+        toKilltheBirdDTO =
+                new BookDTO(1L, "‎Harper Lee", "To Kill a Mockingbird",
+                        sdf.parse("01/1/1935"), sdf.parse("01/1/1936"));
+        uncleTomsDTO =
+                new BookDTO(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
+                        sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));
+
     }
 
     @Test
     public void testGetBookInfo() {
-        long idOfMockingBird = toKilltheBird.getId();
-        Book returnedBook = manager.getBookInfo(idOfMockingBird);
-        assertEquals("not return MockinBird", toKilltheBird, returnedBook);
+        long idOfMockingBird = toKilltheBirdBook.getId();
+        BookDTO generatedDTO = manager.getBookInfo(idOfMockingBird);
+        assertEquals("not return MockinBirdDTO", toKilltheBirdDTO, generatedDTO);
     }
 
     @Test
     public void testGetAllBooks() {
-        List<Book> returnedBooks = manager.getAllBooks();
-        assertEquals("wrong size", allBooks.size(), returnedBooks.size());
-        assertTrue("not contain MockinBird",
-                returnedBooks.contains(toKilltheBird));
-        assertTrue("not contain UncleTom", returnedBooks.contains(uncleToms));
+        List<BookDTO> returnedBooksDTO = manager.getAllBooks();
+        assertEquals("wrong size", allBooks.size(), returnedBooksDTO.size());
+        assertTrue("not contain MockinBirdDTO",
+                returnedBooksDTO.contains(toKilltheBirdDTO));
+        assertTrue("not contain UncleTomDTO",
+                returnedBooksDTO.contains(uncleTomsDTO));
     }
 
     @Test
     public void testGetBooksFromPeriod() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
 
-        List<Book> returnedBooks;
+        List<BookDTO> returnedBooksDTO;
         try {
-            returnedBooks =
+            returnedBooksDTO =
                     manager.getBooksFromPeriod(sdf.parse("01/1/1900"),
                             sdf.parse("01/1/1950"));
-            assertEquals("wrong size", 1, returnedBooks.size());
-            assertTrue("not contain MockinBird",
-                    returnedBooks.contains(toKilltheBird));
+            assertEquals("wrong size", 1, returnedBooksDTO.size());
+            assertTrue("not contain MockinBirdDTO",
+                    returnedBooksDTO.contains(toKilltheBirdDTO));
         } catch (ParseException e) {
             e.printStackTrace();
             fail();
