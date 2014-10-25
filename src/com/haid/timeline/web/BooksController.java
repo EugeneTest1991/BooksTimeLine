@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.haid.timeline.domain.Book;
 import com.haid.timeline.service.BookDTO;
 import com.haid.timeline.service.BookManager;
 
@@ -36,8 +35,8 @@ public class BooksController {
     }
 
     @RequestMapping(value = "/json", method = RequestMethod.GET)
-    public @ResponseBody Book showBookjson() {
-        return new Book();
+    public @ResponseBody BookDTO showBookjson() {
+        return new BookDTO();
     }
 
 }
