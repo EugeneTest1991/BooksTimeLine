@@ -27,6 +27,11 @@ public class BooksController {
         return "books";
     }
 
+    @RequestMapping({"/time"})
+    public String showTime(Model model) {
+        return "timeglider";
+    }
+
     @RequestMapping(value = "/jsons", method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
