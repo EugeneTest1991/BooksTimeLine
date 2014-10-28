@@ -174,6 +174,7 @@
                                                             },
                                                             "min_zoom" : 15,
                                                             "max_zoom" : 60,
+                                                            "icon_folder" : "resources/timeglider/icons/",
                                                         });
                                     });
                 </script>
