@@ -11,6 +11,64 @@
 <link rel="stylesheet" type="text/css" charset="utf-8"
     href="${pageContext.servletContext.contextPath}/resources/timeglider/timeglider.datepicker.css">
 
+<style type='text/css'>
+body {
+ margin: 0;
+ font-family: "franklin-gothic-urw-cond", Helvetica, Arial, sans-serif;
+}
+
+#placement {
+ margin: 0;
+ border: none;
+}
+
+.timeglider-container {
+ border: none;
+}
+
+.tg-timeline-env-buttons {
+ display: none;
+}
+
+.tg-close-button-remove {
+ position: absolute;
+ top: 4px;
+ right: 4px;
+ z-index: 400;
+ width: 20px;
+ height: 20px;
+ padding: 0;
+ border: none;
+ color: transparent;
+}
+
+.timeglider-ev-modal {
+ background-color: #201e1b;
+ background-color: rgba(54, 52, 48, 1);
+ border: 4px solid #aaa69c;
+ -moz-box-shadow: 3px 4px 6px #0A0A0A;
+ -webkit-box-shadow: 3px 4px 6px #0A0A0A;
+ box-shadow: 3px 4px 6px #0A0A0A;
+ -webkit-border-radius: 8px;
+ -moz-border-radius: 8px;
+ border-radius: 8px;
+ width: 350px;
+}
+
+.timeglider-ev-modal p {
+ font-size: 14px;
+ color: #fefbf4;
+ margin: 8px;
+}
+
+.timeglider-ev-modal h4, .tg-timeline-modal h4 {
+ margin: 4px 8px 2px 8px;
+ padding: 0;
+ color: #b8b1a3;
+ font-size: 16px;
+}
+</style>
+
 <script type="text/javascript"
     src="${pageContext.servletContext.contextPath}/resources/js/jquery.js"></script>
 <script type="text/javascript" charset="utf-8"
@@ -47,136 +105,14 @@
     <div id='placement'></div>
 
     <script>
-                    $(document)
-                            .ready(
-                                    function() {
-                                        var tg1 = $("#placement")
-                                                .timeline(
-                                                        {
-                                                            "data_source" : {
-                                                                "presentation" : "Timeglider",
-                                                                "title" : "My Presentation",
-                                                                "description" : "Example of two timelines loaded, one with 'inverted' set to true, and both with a higher 'bottom' value to create a bookmatched view.",
-                                                                "open_modal" : true,
-                                                                "initial_zoom" : 49,
-                                                                "image_lane_height" : 100,
-                                                                "focus_date" : "1991-06-12 12:00:00",
-                                                                "initial_timelines" : [
-                                                                        "j_life",
-                                                                        "m_life" ],
-                                                                "timelines" : [
-
-                                                                        {
-                                                                            "focus_date" : "1991-06-12 12:00:00",
-                                                                            "title" : "John",
-                                                                            "id" : "j_life",
-                                                                            "initial_zoom" : "46",
-                                                                            "bottom" : "250",
-                                                                            "events" : [
-
-                                                                                    {
-                                                                                        "startdate" : "1968-08-20 12:00:00",
-                                                                                        "enddate" : "",
-                                                                                        "title" : "John Born",
-                                                                                        "description" : "Valley hospital in Springfield, Illinois.<iframe src='http://techmeme.com' width=400 height=200></iframe>",
-                                                                                        "icon" : "circle_green.png",
-                                                                                        "importance" : "50",
-                                                                                        "video" : "http://techmeme.com/m/",
-                                                                                        "link" : "http://www.ridgewoodnj.net/main.cfm",
-                                                                                        "id" : "ev_0"
-                                                                                    },
-                                                                                    {
-                                                                                        "startdate" : "1981-09-01 12:00:00",
-                                                                                        "enddate" : "1986-06-01 12:00:00",
-                                                                                        "title" : "HHS",
-                                                                                        "description" : "Hanover (NH) High School.",
-                                                                                        "icon" : "square_blue.png",
-                                                                                        "importance" : "32",
-                                                                                        "link" : "http://hanoverhigh.us/Hanover/",
-                                                                                        "id" : "ev_3"
-                                                                                    },
-
-                                                                                    {
-                                                                                        "startdate" : "1999-06-19 12:00:00",
-                                                                                        "enddate" : "1999-06-19 12:00:00",
-                                                                                        "title" : "Married!",
-                                                                                        "description" : "in Amherst, MA",
-                                                                                        "icon" : "circle_red.png",
-                                                                                        "importance" : "42",
-                                                                                        "id" : "ev_3mar"
-                                                                                    },
-
-                                                                                    {
-                                                                                        "startdate" : "today",
-                                                                                        "enddate" : "",
-                                                                                        "title" : "today!",
-                                                                                        "description" : "Here in Boise Idaho.",
-                                                                                        "icon" : "star_orange.png",
-                                                                                        "importance" : "40",
-                                                                                        "link" : "",
-                                                                                        "id" : "ev_4"
-                                                                                    } ]
-                                                                        },
-
-                                                                        {
-                                                                            "focus_date" : "1969-02-27 12:00:00",
-                                                                            "title" : "Mary",
-                                                                            "description" : "Mary's life",
-                                                                            "id" : "m_life",
-                                                                            "initial_zoom" : "42",
-                                                                            "bottom" : "180",
-                                                                            "inverted" : true,
-                                                                            "events" : [
-
-                                                                                    {
-                                                                                        "startdate" : "1969-02-27 12:00:00",
-                                                                                        "enddate" : "1969-02-27 12:00:00",
-                                                                                        "title" : "Mary born",
-                                                                                        "description" : "St Lukes Hospital, Boise ID, to Walter and Diane Jastremsky",
-                                                                                        "icon" : "circle_green.png",
-                                                                                        "importance" : "50",
-                                                                                        "id" : "hj_ev_0"
-                                                                                    },
-                                                                                    {
-                                                                                        "startdate" : "1982-09-01 12:00:00",
-                                                                                        "enddate" : "1987-06-01 12:00:00",
-                                                                                        "title" : "Boise High",
-                                                                                        "description" : "Boise (NH) High School.",
-                                                                                        "icon" : "square_blue.png",
-                                                                                        "importance" : "32",
-                                                                                        "id" : "hj_ev_3"
-                                                                                    },
-
-                                                                                    {
-                                                                                        "startdate" : "1999-06-19 12:00:00",
-                                                                                        "enddate" : "1999-06-19 12:00:00",
-                                                                                        "title" : "Married!",
-                                                                                        "description" : "in Amherst, MA",
-                                                                                        "icon" : "circle_red.png",
-                                                                                        "importance" : "42",
-                                                                                        "id" : "ev_3mar"
-                                                                                    },
-
-                                                                                    {
-                                                                                        "startdate" : "today",
-                                                                                        "enddate" : "",
-                                                                                        "title" : "today!",
-                                                                                        "description" : "Here in Boise Idaho.",
-                                                                                        "icon" : "star_orange.png",
-                                                                                        "importance" : "40",
-                                                                                        "link" : "",
-                                                                                        "id" : "ev_4"
-                                                                                    } ]
-
-                                                                        }
-
-                                                                ]
-                                                            },
-                                                            "min_zoom" : 15,
-                                                            "max_zoom" : 60,
-                                                            "icon_folder" : "resources/timeglider/icons/",
-                                                        });
-                                    });
+                    $(document).ready(function() {
+                        var tg1 = $("#placement").timeline({
+                            "data_source" : "resources/timeglider/json/flight.json",
+                            "min_zoom" : 15,
+                            "max_zoom" : 60,
+                            "icon_folder" : "resources/timeglider/icons/",
+                        });
+                    });
                 </script>
 
 </body>
