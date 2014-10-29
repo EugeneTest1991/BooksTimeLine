@@ -13,59 +13,59 @@
 
 <style type='text/css'>
 body {
- margin: 0;
- font-family: "franklin-gothic-urw-cond", Helvetica, Arial, sans-serif;
+    margin: 0;
+    font-family: "franklin-gothic-urw-cond", Helvetica, Arial, sans-serif;
 }
 
 #placement {
- margin: 0;
- border: none;
+    margin: 0;
+    border: none;
 }
 
 .timeglider-container {
- border: none;
+    border: none;
 }
 
 .tg-timeline-env-buttons {
- display: none;
+    display: none;
 }
 
 .tg-close-button-remove {
- position: absolute;
- top: 4px;
- right: 4px;
- z-index: 400;
- width: 20px;
- height: 20px;
- padding: 0;
- border: none;
- color: transparent;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 400;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    color: transparent;
 }
 
 .timeglider-ev-modal {
- background-color: #201e1b;
- background-color: rgba(54, 52, 48, 1);
- border: 4px solid #aaa69c;
- -moz-box-shadow: 3px 4px 6px #0A0A0A;
- -webkit-box-shadow: 3px 4px 6px #0A0A0A;
- box-shadow: 3px 4px 6px #0A0A0A;
- -webkit-border-radius: 8px;
- -moz-border-radius: 8px;
- border-radius: 8px;
- width: 350px;
+    background-color: #201e1b;
+    background-color: rgba(54, 52, 48, 1);
+    border: 4px solid #aaa69c;
+    -moz-box-shadow: 3px 4px 6px #0A0A0A;
+    -webkit-box-shadow: 3px 4px 6px #0A0A0A;
+    box-shadow: 3px 4px 6px #0A0A0A;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    width: 350px;
 }
 
 .timeglider-ev-modal p {
- font-size: 14px;
- color: #fefbf4;
- margin: 8px;
+    font-size: 14px;
+    color: #fefbf4;
+    margin: 8px;
 }
 
-.timeglider-ev-modal h4, .tg-timeline-modal h4 {
- margin: 4px 8px 2px 8px;
- padding: 0;
- color: #b8b1a3;
- font-size: 16px;
+.timeglider-ev-modal h4,.tg-timeline-modal h4 {
+    margin: 4px 8px 2px 8px;
+    padding: 0;
+    color: #b8b1a3;
+    font-size: 16px;
 }
 </style>
 
@@ -105,13 +105,30 @@ body {
     <div id='placement'></div>
 
     <script>
-                    $(document).ready(function() {
-                        var tg1 = $("#placement").timeline({
-                            "data_source" : "resources/timeglider/json/flight.json",
-                            "min_zoom" : 15,
-                            "max_zoom" : 60,
-                            "icon_folder" : "resources/timeglider/icons/",
-                        });
+                    var myList;
+                    $
+                            .getJSON(
+                                    "http://localhost:8080/BooksTimeLine/resources/timeglider/json/flight.json",
+                                    function(json) {
+                                        alert("JSON Data: " + json);
+                                        myList = json;
+                                    });
+
+                    /*                     $.getJSON("http://localhost:8080/BooksTimeLine/resources/timeglider/json/flight.json").done(
+                     function(data) {
+                     myList = data;
+                     }); */
+
+                    $(function() {
+                        alert("readed: " + myList);
+                        var tg1 = $("#placement")
+                                .timeline(
+                                        {
+                                            "data_source" : "resources/timeglider/json/flight.json",
+                                            "min_zoom" : 15,
+                                            "max_zoom" : 60,
+                                            "icon_folder" : "resources/timeglider/icons/"
+                                        });
                     });
                 </script>
 
