@@ -13,59 +13,59 @@
 
 <style type='text/css'>
 body {
-    margin: 0;
-    font-family: "franklin-gothic-urw-cond", Helvetica, Arial, sans-serif;
+ margin: 0;
+ font-family: "franklin-gothic-urw-cond", Helvetica, Arial, sans-serif;
 }
 
 #placement {
-    margin: 0;
-    border: none;
+ margin: 0;
+ border: none;
 }
 
 .timeglider-container {
-    border: none;
+ border: none;
 }
 
 .tg-timeline-env-buttons {
-    display: none;
+ display: none;
 }
 
 .tg-close-button-remove {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    z-index: 400;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border: none;
-    color: transparent;
+ position: absolute;
+ top: 4px;
+ right: 4px;
+ z-index: 400;
+ width: 20px;
+ height: 20px;
+ padding: 0;
+ border: none;
+ color: transparent;
 }
 
 .timeglider-ev-modal {
-    background-color: #201e1b;
-    background-color: rgba(54, 52, 48, 1);
-    border: 4px solid #aaa69c;
-    -moz-box-shadow: 3px 4px 6px #0A0A0A;
-    -webkit-box-shadow: 3px 4px 6px #0A0A0A;
-    box-shadow: 3px 4px 6px #0A0A0A;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    width: 350px;
+ background-color: #201e1b;
+ background-color: rgba(54, 52, 48, 1);
+ border: 4px solid #aaa69c;
+ -moz-box-shadow: 3px 4px 6px #0A0A0A;
+ -webkit-box-shadow: 3px 4px 6px #0A0A0A;
+ box-shadow: 3px 4px 6px #0A0A0A;
+ -webkit-border-radius: 8px;
+ -moz-border-radius: 8px;
+ border-radius: 8px;
+ width: 350px;
 }
 
 .timeglider-ev-modal p {
-    font-size: 14px;
-    color: #fefbf4;
-    margin: 8px;
+ font-size: 14px;
+ color: #fefbf4;
+ margin: 8px;
 }
 
-.timeglider-ev-modal h4,.tg-timeline-modal h4 {
-    margin: 4px 8px 2px 8px;
-    padding: 0;
-    color: #b8b1a3;
-    font-size: 16px;
+.timeglider-ev-modal h4, .tg-timeline-modal h4 {
+ margin: 4px 8px 2px 8px;
+ padding: 0;
+ color: #b8b1a3;
+ font-size: 16px;
 }
 </style>
 
@@ -105,30 +105,60 @@ body {
     <div id='placement'></div>
 
     <script>
-                    var myList;
-                    $
-                            .getJSON(
-                                    "http://localhost:8080/BooksTimeLine/resources/timeglider/json/flight.json",
-                                    function(json) {
-                                        alert("JSON Data: " + json);
-                                        myList = json;
-                                    });
+                    function getFormattedDate(date) {
+                        var year = date.getFullYear();
+                        var month = (1 + date.getMonth()).toString();
+                        var day = date.getDate().toString();
+                        var hours = date.getHours();
+                        var minutes = date.getMinutes();
+                        return year + '-' + month + '-' + day + " " + hours
+                                + ":" + minutes;
+                    }
 
-                    /*                     $.getJSON("http://localhost:8080/BooksTimeLine/resources/timeglider/json/flight.json").done(
-                     function(data) {
-                     myList = data;
-                     }); */
+                    function loadJSON(callback) {
+                        var xobj = new XMLHttpRequest();
+                        xobj.overrideMimeType("application/json");
+                        xobj
+                                .open(
+                                        "GET",
+                                        "http://localhost:8080/BooksTimeLine/resources/timeglider/json/flight.json",
+                                        true);
+                        xobj.onreadystatechange = function() {
+                            if (xobj.readyState == 4 && xobj.status == "200") {
+                                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                                callback(xobj.responseText);
+                            }
+                        };
+                        xobj.send(null);
+                    }
 
                     $(function() {
-                        alert("readed: " + myList);
-                        var tg1 = $("#placement")
-                                .timeline(
-                                        {
-                                            "data_source" : "resources/timeglider/json/flight.json",
-                                            "min_zoom" : 15,
-                                            "max_zoom" : 60,
-                                            "icon_folder" : "resources/timeglider/icons/"
-                                        });
+                        var data_JSON;
+                        loadJSON(function(response) {
+                            // Parse JSON string into object
+                            data_JSON = JSON.parse(response);
+                            var events = data_JSON[0].events;
+                            events.push({
+                                "id" : "1",
+                                "title" : "Great Depression",
+                                "startdate" : getFormattedDate(new Date(
+                                        -1267833600000)),
+                                "enddate" : "1940-9-20 1:00",
+                                "date_display" : "da",
+                                "icon" : "halfcircle_blue.png",
+                                "low_threshold" : "1",
+                                "high_threshold" : "45",
+                                "importance" : "52",
+                                "css_class" : ""
+                            });
+                            var tg1 = $("#placement").timeline({
+                                "data_source" : data_JSON,
+                                "min_zoom" : 15,
+                                "max_zoom" : 60,
+                                "icon_folder" : "resources/timeglider/icons/"
+                            });
+                        });
+
                     });
                 </script>
 

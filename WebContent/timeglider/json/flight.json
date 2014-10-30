@@ -913,7 +913,7 @@
 				"enddate":       "1905-01-31 18:29",
 				"description":   "<p>undefined</p>",
 				"date_display":  "no",
-				"image":         {"src":"/app/wright_bros/loc_img/1905_orville_portrait.jpg","display_class":"lane","scale":"100","width":"109","height":"150"},
+				"image":         {"src":"http://timeglider.com/app/wright_bros/loc_img/1905_orville_portrait.jpg","display_class":"lane","scale":"100","width":"109","height":"150"},
 				"y_position":         "60",
 				"icon":          "",
 				"low_threshold": "1",
