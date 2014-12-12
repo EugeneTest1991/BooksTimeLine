@@ -131,9 +131,6 @@ body {
 
 <script type="text/javascript" charset="utf-8"
     src="${pageContext.servletContext.contextPath}/resources/timeglider/usa_history.js"></script>
-    
-    <script type="text/javascript" charset="utf-8"
-    src="${pageContext.servletContext.contextPath}/resources/timeglider/data.js"></script>
 
 <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -193,7 +190,7 @@ body {
                         var xobj = new XMLHttpRequest();
                         xobj.overrideMimeType("application/json");
                         xobj.open("GET",
-                                "http://localhost:8080/BooksTimeLine/jsons",
+                                "http://localhost:8080/BooksTimeLine/books",
                                 true);
                         xobj.onreadystatechange = function() {
                             if (xobj.readyState == 4 && xobj.status == "200") {
@@ -237,7 +234,7 @@ body {
                                     "date_display" : "da",
                                     "icon" : "halfcircle_blue.png",
                                     "low_threshold" : "1",
-                                    "high_threshold" : "45",
+                                    "high_threshold" : "55",
                                     "importance" : "52",
                                     "css_class" : ""
                                 });

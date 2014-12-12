@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.haid.timeline.service.BookDTO;
 import com.haid.timeline.service.BookManager;
@@ -21,10 +19,10 @@ public class BooksController {
         this.bookManager = bookManager;
     }
 
-    @RequestMapping({"/", "/books"})
+    @RequestMapping("/")
     public String showBooksPage(Model model) {
         model.addAttribute("books", bookManager.getAllBooks());
-        return "books";
+        return "info";
     }
 
     @RequestMapping({"/time"})
@@ -32,16 +30,19 @@ public class BooksController {
         return "timeglider";
     }
 
-    @RequestMapping(value = "/jsons", method = RequestMethod.GET,
+    @RequestMapping(value = "/books", method = RequestMethod.GET,
             produces = "application/json")
     @ResponseBody
     public List<BookDTO> showBooksjson() {
         return bookManager.getAllBooks();
     }
 
-    @RequestMapping(value = "/json", method = RequestMethod.GET)
-    public @ResponseBody BookDTO showBookjson() {
-        return new BookDTO();
+    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET,
+            produces = "application/json")
+    @ResponseBody
+    public BookDTO showBookjson(@PathVariable("id") Long bookId) {
+        return bookManager.getBookInfo(bookId);
     }
+
 
 }

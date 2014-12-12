@@ -7,6 +7,14 @@ import com.haid.timeline.domain.Book;
 
 public final class BookTransformer {
 
+    public static List<BookDTO> generateDTOList(List<Book> books) {
+        List<BookDTO> booksDTO = new ArrayList<BookDTO>(books.size());
+        for (Book book : books) {
+            booksDTO.add(generateDTO(book));
+        }
+        return booksDTO;
+    }
+
     public static BookDTO generateDTO(Book book) {
         BookDTO bookDTO = new BookDTO();
         bookDTO.setId(book.getId());
@@ -25,13 +33,5 @@ public final class BookTransformer {
         book.setActionStart(bookDTO.getActionStart());
         book.setActionEnd(bookDTO.getActionEnd());
         return book;
-    }
-
-    public static List<BookDTO> generateDTOList(List<Book> books) {
-        List<BookDTO> booksDTO = new ArrayList<BookDTO>(books.size());
-        for (Book book : books) {
-            booksDTO.add(generateDTO(book));
-        }
-        return booksDTO;
     }
 }
