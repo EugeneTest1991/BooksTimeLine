@@ -120,4 +120,18 @@ public class StubBooksDAOTests {
         assertEquals("not return Financier", financier, returnedBook);
     }
 
+    @Test
+    public void testUpdateBook() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        Book toKilltheBird =
+                new Book(1L, "‎Nelle Harper Lee", "To Kill a Mockingbird",
+                        sdf.parse("01/1/1935"), sdf.parse("01/1/1936"));
+        Book returnedBook = booksDAO.updateBook(toKilltheBird);
+        assertEquals("not return MockinBird with updated value", toKilltheBird,
+                returnedBook);
+        Book returnedBookById = booksDAO.getBookById(toKilltheBird.getId());
+        assertEquals("return another MockinBird by id", returnedBookById,
+                returnedBook);
+    }
+
 }

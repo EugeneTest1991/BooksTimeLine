@@ -41,4 +41,11 @@ public class SimpleBookManager implements BookManager {
         return bookId;
     }
 
+    @Override
+    public BookDTO updateBook(BookDTO bookDTO) {
+        Book book = BookTransformer.generateEntity(bookDTO);
+        book = booksDAO.updateBook(book);
+        return BookTransformer.generateDTO(book);
+    }
+
 }

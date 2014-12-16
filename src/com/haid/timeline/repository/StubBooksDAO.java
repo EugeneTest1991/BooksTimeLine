@@ -53,4 +53,25 @@ public class StubBooksDAO implements BooksDAO {
         return newBook.getId();
     }
 
+    @Override
+    public Book updateBook(Book aBook) {
+        Long id = aBook.getId();
+        Book desiredBook = null;
+        for (Book book : allBooks) {
+            if (id.equals(book.getId())) {
+                desiredBook = book;
+                break;
+            }
+        }
+        if (desiredBook == null) {
+            throw new IllegalArgumentException(
+                    "No book found with such Id for update");
+        }
+        desiredBook.setAuthor(aBook.getAuthor());
+        desiredBook.setTitle(aBook.getTitle());
+        desiredBook.setActionStart(aBook.getActionStart());
+        desiredBook.setActionEnd(aBook.getActionEnd());
+        return desiredBook;
+    }
+
 }

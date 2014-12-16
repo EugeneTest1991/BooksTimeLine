@@ -97,4 +97,19 @@ public class SimpleBookManagerTests {
         assertEquals("not return FinancierDTO", financierDTO, returnedBookDTO);
     }
 
+    @Test
+    public void testUpdateBook() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        BookDTO toKilltheBirdDTO =
+                new BookDTO(1L, "‎Nelle Harper Lee", "To Kill a Mockingbird",
+                        sdf.parse("01/1/1935"), sdf.parse("01/1/1936"));
+        BookDTO returnedBookDTO = manager.updateBook(toKilltheBirdDTO);
+        assertEquals("not return MockinBirdDTO with updated value",
+                toKilltheBirdDTO, returnedBookDTO);
+        BookDTO returnedBookDTOById =
+                manager.getBookInfo(toKilltheBirdDTO.getId());
+        assertEquals("return another MockinBird by id", returnedBookDTOById,
+                returnedBookDTO);
+    }
+
 }

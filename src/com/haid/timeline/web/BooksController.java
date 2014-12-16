@@ -52,5 +52,13 @@ public class BooksController {
         return bookManager.getAllBooks();
     }
 
+    @RequestMapping(value = "/books", method = RequestMethod.PUT,
+            consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public List<BookDTO> updateBook(@RequestBody BookDTO bookDTO) {
+        bookManager.updateBook(bookDTO);
+        return bookManager.getAllBooks();
+    }
+
 
 }

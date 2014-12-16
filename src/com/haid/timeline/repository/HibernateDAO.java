@@ -66,4 +66,19 @@ public class HibernateDAO implements BooksDAO {
         return newBook.getId();
     }
 
+    @Override
+    public Book updateBook(Book aBook) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        try {
+            session.merge(aBook);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        session.close();
+        return aBook;
+    }
+
 }

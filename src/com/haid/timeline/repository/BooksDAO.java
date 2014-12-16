@@ -14,4 +14,6 @@ public interface BooksDAO {
     public abstract Book getBookById(Long id);
 
     public abstract Long addBook(Book newBook);
+
+    public abstract Book updateBook(Book aBook);
 }
