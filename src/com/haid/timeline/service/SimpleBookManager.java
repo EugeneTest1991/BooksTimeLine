@@ -34,4 +34,11 @@ public class SimpleBookManager implements BookManager {
         return BookTransformer.generateDTOList(booksFromPeriod);
     }
 
+    @Override
+    public Long addBook(BookDTO bookDTO) {
+        Book newBook = BookTransformer.generateEntity(bookDTO);
+        Long bookId = booksDAO.addBook(newBook);
+        return bookId;
+    }
+
 }

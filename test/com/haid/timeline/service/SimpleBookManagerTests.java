@@ -18,10 +18,12 @@ public class SimpleBookManagerTests {
     private SimpleBookManager manager;
     private Book toKilltheBirdBook;
     private Book uncleTomsBook;
+    private Book financier;
     List<Book> allBooks;
 
     private BookDTO toKilltheBirdDTO;
     private BookDTO uncleTomsDTO;
+    private BookDTO financierDTO;
 
     @Before
     public void setUp() throws Exception {
@@ -32,6 +34,9 @@ public class SimpleBookManagerTests {
         uncleTomsBook =
                 new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
                         sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));
+        financier =
+                new Book(3L, "Theodore Dreiser", "The Financier",
+                        sdf.parse("01/1/1860"), sdf.parse("01/1/1870"));
 
         allBooks = new ArrayList<Book>();
         allBooks.add(uncleTomsBook);
@@ -45,7 +50,9 @@ public class SimpleBookManagerTests {
         uncleTomsDTO =
                 new BookDTO(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
                         sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));
-
+        financierDTO =
+                new BookDTO(3L, "Theodore Dreiser", "The Financier",
+                        sdf.parse("01/1/1860"), sdf.parse("01/1/1870"));
     }
 
     @Test
@@ -81,8 +88,13 @@ public class SimpleBookManagerTests {
             e.printStackTrace();
             fail();
         }
+    }
 
-
+    @Test
+    public void testAddBook() {
+        Long id = manager.addBook(financierDTO);
+        BookDTO returnedBookDTO = manager.getBookInfo(id);
+        assertEquals("not return FinancierDTO", financierDTO, returnedBookDTO);
     }
 
 }

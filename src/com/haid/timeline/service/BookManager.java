@@ -11,4 +11,5 @@ public interface BookManager {
 
     public abstract List<BookDTO> getBooksFromPeriod(Date dateFrom, Date dateTo);
 
+    public abstract Long addBook(BookDTO bookDTO);
 }

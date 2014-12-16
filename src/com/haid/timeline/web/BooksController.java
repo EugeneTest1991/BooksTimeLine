@@ -44,5 +44,13 @@ public class BooksController {
         return bookManager.getBookInfo(bookId);
     }
 
+    @RequestMapping(value = "/books", method = RequestMethod.POST,
+            consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public List<BookDTO> addBook(@RequestBody BookDTO bookDTO) {
+        bookManager.addBook(bookDTO);
+        return bookManager.getAllBooks();
+    }
+
 
 }

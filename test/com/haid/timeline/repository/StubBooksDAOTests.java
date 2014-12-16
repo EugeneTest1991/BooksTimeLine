@@ -18,6 +18,7 @@ public class StubBooksDAOTests {
 
     private Book toKilltheBird;
     private Book uncleToms;
+    private Book financier;
 
     List<Book> allBooks;
 
@@ -30,6 +31,9 @@ public class StubBooksDAOTests {
         uncleToms =
                 new Book(2L, "Harriet Beecher Stowe", "Uncle Tom's Cabin",
                         sdf.parse("01/1/1850"), sdf.parse("01/1/1852"));
+        financier =
+                new Book(3L, "Theodore Dreiser", "The Financier",
+                        sdf.parse("01/1/1860"), sdf.parse("01/1/1870"));
 
         allBooks = new ArrayList<Book>();
         allBooks.add(uncleToms);
@@ -108,4 +112,12 @@ public class StubBooksDAOTests {
             fail();
         }
     }
+
+    @Test
+    public void testAddBook() {
+        Long id = booksDAO.addBook(financier);
+        Book returnedBook = booksDAO.getBookById(id);
+        assertEquals("not return Financier", financier, returnedBook);
+    }
+
 }

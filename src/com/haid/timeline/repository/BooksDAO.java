@@ -7,9 +7,11 @@ import com.haid.timeline.domain.Book;
 
 
 public interface BooksDAO {
-    List<Book> getAllBooks();
+    public abstract List<Book> getAllBooks();
 
-    List<Book> getBooksFromPeriod(Date dateFrom, Date dateTo);
+    public abstract List<Book> getBooksFromPeriod(Date dateFrom, Date dateTo);
 
-    Book getBookById(Long id);
+    public abstract Book getBookById(Long id);
+
+    public abstract Long addBook(Book newBook);
 }

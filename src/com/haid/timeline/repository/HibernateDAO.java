@@ -3,9 +3,7 @@ package com.haid.timeline.repository;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
@@ -51,7 +49,21 @@ public class HibernateDAO implements BooksDAO {
         Book book = (Book) session.load(Book.class, id);
         session.close();
         return book;
+    }
 
+    @Override
+    public Long addBook(Book newBook) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        try {
+            session.persist(newBook);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        session.close();
+        return newBook.getId();
     }
 
 }

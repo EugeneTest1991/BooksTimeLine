@@ -47,4 +47,10 @@ public class StubBooksDAO implements BooksDAO {
         return desiredBook;
     }
 
+    @Override
+    public Long addBook(Book newBook) {
+        allBooks.add(newBook);
+        return newBook.getId();
+    }
+
 }
