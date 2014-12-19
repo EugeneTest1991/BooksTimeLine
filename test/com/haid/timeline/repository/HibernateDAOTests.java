@@ -57,4 +57,10 @@ public class HibernateDAOTests {
         System.out.println(updatedBook);
         assertEquals("not return updated book", book, updatedBook);
     }
+
+    @Test
+    public void testDeleteBook() {
+        hibernateDAO.deleteBook(2L);
+        System.out.println(hibernateDAO.getAllBooks());
+    }
 }

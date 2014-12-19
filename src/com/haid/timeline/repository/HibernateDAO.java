@@ -81,4 +81,24 @@ public class HibernateDAO implements BooksDAO {
         return aBook;
     }
 
+    @Override
+    public void deleteBook(Long id) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        try {
+            Query query = session.createQuery("DELETE Book WHERE id = :bookId");
+            query.setParameter("bookId", id);
+            int result = query.executeUpdate();
+            if (result == 1) {
+                transaction.commit();
+            } else {
+                transaction.rollback();
+            }
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        session.close();
+    }
+
 }

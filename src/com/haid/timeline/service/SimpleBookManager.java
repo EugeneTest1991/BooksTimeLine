@@ -48,4 +48,8 @@ public class SimpleBookManager implements BookManager {
         return BookTransformer.generateDTO(book);
     }
 
+    @Override
+    public void deleteBook(Long id) {
+        booksDAO.deleteBook(id);
+    }
 }

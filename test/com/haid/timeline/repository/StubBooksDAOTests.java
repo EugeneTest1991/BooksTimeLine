@@ -134,4 +134,12 @@ public class StubBooksDAOTests {
                 returnedBook);
     }
 
+    @Test
+    public void testDeleteBook() {
+        long idOfMockingBird = toKilltheBird.getId();
+        booksDAO.deleteBook(idOfMockingBird);
+        assertTrue("not delete MockinBird",
+                !(booksDAO.getAllBooks().contains(toKilltheBird)));
+    }
+
 }

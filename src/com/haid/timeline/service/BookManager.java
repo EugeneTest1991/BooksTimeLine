@@ -14,4 +14,6 @@ public interface BookManager {
     public abstract Long addBook(BookDTO bookDTO);
 
     public abstract BookDTO updateBook(BookDTO bookDTO);
+
+    public abstract void deleteBook(Long id);
 }

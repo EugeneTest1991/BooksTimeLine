@@ -74,4 +74,16 @@ public class StubBooksDAO implements BooksDAO {
         return desiredBook;
     }
 
+    @Override
+    public void deleteBook(Long id) {
+        int index = 0;
+        for (Book book : allBooks) {
+            if (id.equals(book.getId())) {
+                break;
+            }
+            index++;
+        }
+        allBooks.remove(index);
+    }
+
 }

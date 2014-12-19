@@ -112,4 +112,11 @@ public class SimpleBookManagerTests {
                 returnedBookDTO);
     }
 
+    @Test
+    public void testDeleteBook() throws ParseException {
+        long idOfMockingBird = toKilltheBirdDTO.getId();
+        manager.deleteBook(idOfMockingBird);
+        assertTrue("not delete MockinBird",
+                !(manager.getAllBooks().contains(toKilltheBirdDTO)));
+    }
 }

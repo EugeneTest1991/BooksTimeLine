@@ -60,5 +60,11 @@ public class BooksController {
         return bookManager.getAllBooks();
     }
 
-
+    @RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE,
+            produces = "application/json")
+    @ResponseBody
+    public List<BookDTO> deleteBook(@PathVariable("id") Long bookId) {
+        bookManager.deleteBook(bookId);
+        return bookManager.getAllBooks();
+    }
 }

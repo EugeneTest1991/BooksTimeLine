@@ -16,4 +16,6 @@ public interface BooksDAO {
     public abstract Long addBook(Book newBook);
 
     public abstract Book updateBook(Book aBook);
+
+    public abstract void deleteBook(Long id);
 }
