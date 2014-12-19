@@ -57,7 +57,7 @@ public class HibernateDAO implements BooksDAO {
         Transaction transaction = session.getTransaction();
         transaction.begin();
         try {
-            session.persist(newBook);
+            session.save(newBook);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
