@@ -46,7 +46,7 @@ public class HibernateDAO implements BooksDAO {
     @Override
     public Book getBookById(Long id) {
         Session session = sessionFactory.openSession();
-        Book book = (Book) session.load(Book.class, id);
+        Book book = (Book) session.get(Book.class, id);
         session.close();
         return book;
     }
